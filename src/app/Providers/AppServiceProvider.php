@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Providers;
+
+use App\Services\StorageManagerService;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\ServiceProvider;
+
+/**
+ * Class AppServiceProvider.
+ */
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+        $this->app->singleton(StorageManagerService::class,function (){
+            return new StorageManagerService();
+        });
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Paginator::useBootstrap();
+    }
+}
